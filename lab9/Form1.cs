@@ -77,23 +77,25 @@ namespace lab9
 
             double op;
             dataGridView1.Rows.Add();
-            for (int i2= 0; i2 < dataGridView1.ColumnCount; i2++)
+            dataGridView1.Columns.Add("suma", "sum");
+            for (int i2= 0; i2 <dataGridView1.ColumnCount; i2++)
+            {
+                op = 0;
+                for (int i = 0; i <dataGridView1.RowCount; i++)
+                {
+                    op += Convert.ToDouble(dataGridView1.Rows[i].Cells[i2].Value);
+
+                }
+                dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[i2].Value = op;
+            }
+            
+            for (int i2 = 0; i2 < dataGridView1.RowCount; i2++)
             {
                 op = 0;
                 for (int i = 0; i < dataGridView1.ColumnCount; i++)
                 {
-                    op += Convert.ToDouble(dataGridView1.Rows[i].Cells[i2].Value);
-                    dataGridView1.Rows[dataGridView1.RowCount-1].Cells[i2].Value = op;
-                }
-            }
-            dataGridView1.Columns.Add("suma","sum");
-            for (int i2 = 0; i2 < dataGridView1.RowCount; i2++)
-            {
-                op = 0;
-                for (int i = 0; i < dataGridView1.RowCount; i++)
-                {
                     op += Convert.ToDouble(dataGridView1.Rows[i2].Cells[i].Value);
-                    
+
                 }
                 dataGridView1.Rows[i2].Cells[dataGridView1.ColumnCount - 1].Value = op.ToString("0.000");
             }
